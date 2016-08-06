@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     {% load staticfiles %}
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body class="container">
+ <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Auction</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="../additem/">Add Item <span class="sr-only">(current)</span></a></li>
+
+            <li><a href="../myitems/">My Items</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">{{ username }}</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">My Items</a></li>
+                <li><a href="#">Proposals</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row">
+           <div id="custom-search-input">
+                            <div  class="input-group col-md-10">
+                                <input type="text" class="  search-query form-control" placeholder="Enter what you want to buy here" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+	</div>
+    <div class="container">
+
+  <div class="row" align="center">
+    <div class="col-sm-3">
+      <b><h3  class="text-primary">Image</h3></b>
+    </div>
+    <div class="col-sm-2">
+      <b><h3 class="text-primary">Name</h3></b>
+    </div>
+    <div class="col-sm-3">
+     <b><h3 class="text-primary"> Description</h3></b>
+    </div>
+      <div class="col-sm-2">
+      <b><h3 class="text-primary">Price</h3></b>
+    </div>
+  </div>
+<hr>
+   {% for item in items_list %}
+       {% csrf_token %}
+ <div class="row" align="center">
+       <div class="col-sm-3">
+     <img src="/{{ item.image }}" height="100" width="200"></img>
+    </div>
+
+    <div class="col-sm-2">
+    {{ item.name }}
+    </div>
+     <div class="col-sm-3">
+      <i>{{ item.Description }}</i>
+    </div>
+    <div class="col-sm-2">
+      {{ item.price }}
+    </div>
+
+<div class="col-sm-1">
+    <a href="/auction/itemdetail/{{ item.id }}">  <button type="button" class="btn btn-primary">Place Bid</button></a>
+    </div>
+
+  </div>
+
+
+       <hr color="red">
+    {% endfor %}
+
+</div>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
