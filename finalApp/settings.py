@@ -85,7 +85,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'todoappdb',
         'USER': 'root',
-		'PASSWORD':'admin',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -130,6 +129,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL='/'
 
-print " PRODUCTION Settings"
+print "Local Settings"
 MEDIA_ROOT=os.path.join(BASE_DIR,"pictures")
 print MEDIA_ROOT
